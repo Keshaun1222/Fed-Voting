@@ -37,7 +37,7 @@ echo "\r\n";
                 <form class="form-inline" action="check.php" method="post">
                     <label for="id" class="sr-only">eRepublik ID</label>
                     <input type="text" id="id" name="id" class="form-control" placeholder="eRep ID" required autofocus />
-                    <button id="submit" name="submit" class="btn btn-lg btn-primary" type="submit">&raquo;</button>
+                    <button id="submit" name="submit" class="btn btn-primary" type="submit">&raquo;</button>
                 </form>
                 <div id="fedError" class="alert alert-danger" role="alert" style="display: none;">
                     You must be a member of the <a href="http://www.erepublik.com/en/party/federalist-party-2263/1" target="_blank">Federalist Party in order to vote.
