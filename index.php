@@ -34,7 +34,7 @@ echo "\r\n";
             </div>
             <div class="inner cover">
                 <!--<h1 class="cover-heading">Enter Your eRepublik ID</h1>-->
-                <form class="form-signin" action="check.php" method="post">
+                <form class="form-inline" action="check.php" method="post">
                     <label for="id" class="sr-only">eRepublik ID</label>
                     <input type="text" id="id" name="id" class="form-control" placeholder="eRep ID" required autofocus />
                     <button id="submit" name="submit" class="btn btn-lg btn-primary" type="submit">&raquo;</button>
