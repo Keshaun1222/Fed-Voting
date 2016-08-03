@@ -2,6 +2,7 @@
   "minimum-stability": "dev",
   "prefer-stable": true,
   "require": {
-    "erpk/harvester": "dev-master"
+    "erpk/harvester": "dev-master",
+    "vlucas/phpdotenv": "^2.1"
   }
 }
