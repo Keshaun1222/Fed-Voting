@@ -37,7 +37,7 @@ $query = $mysqli->query("SELECT * FROM elections WHERE start < CURRENT_TIMESTAMP
                 <?php
                 if ($query->num_rows == 0) {
                     ?>
-                    <div id="electionError" class="alert alert-danger" role="alert" style="display: none;">
+                    <div id="electionError" class="alert alert-danger" role="alert">
                         There is no election going on at this moment.
                     </div>
                     <?php
