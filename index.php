@@ -9,6 +9,7 @@ $citizen = $module->getProfile(5065893);
 print_r($citizen);
 echo "\r\n";
 //if ($citizen['party']['id'] == $fedsID) echo 'A FED!!!!';*/
+$query = $mysqli->query("SELECT * FROM elections WHERE start < CURRENT_TIMESTAMP  AND end > CURRENT_TIMESTAMP");
 ?>
 <!DOCTYPE html>
 <html>
@@ -33,25 +34,61 @@ echo "\r\n";
                 </div>
             </div>
             <div class="inner cover">
-                <!--<h1 class="cover-heading">Enter Your eRepublik ID</h1>-->
-                <form class="form-inline" action="check.php" method="post">
-                    <label for="id" class="sr-only">eRepublik ID</label>
-                    <input type="text" id="id" name="id" class="form-control" placeholder="eRep ID" required autofocus />
-                    <button id="submit" name="submit" class="btn btn-primary" type="submit">&raquo;</button>
-                </form>
-                <div id="fedError" class="alert alert-danger" role="alert" style="display: none;">
-                    You must be a member of the <a href="http://www.erepublik.com/en/party/federalist-party-2263/1" target="_blank">Federalist Party in order to vote.
-                </div>
-                <div id="citError" class="alert alert-danger" role="alert" style="display: none;">
-                    The eRep ID you provided does not match an existing citizen.
-                </div>
-                <div id="deadError" class="alert alert-danger" role="alert" style="display: none;">
-                    The citizen associated with the provided eRep ID is dead.
-                </div>
+                <?php
+                if ($query->num_rows == 0) {
+                    ?>
+                    <div id="electionError" class="alert alert-danger" role="alert" style="display: none;">
+                        There is no election going on at this moment.
+                    </div>
+                    <?php
+                } else {
+                    ?>
+                    <!--<h1 class="cover-heading">Enter Your eRepublik ID</h1>-->
+                    <form class="form-inline" action="check.php" method="post">
+                        <label for="id" class="sr-only">eRepublik ID</label>
+                        <input type="number" id="id" name="id" class="form-control" placeholder="eRep ID" required
+                               autofocus/>
+                        <button id="submit" name="submit" class="btn btn-primary" type="submit">&raquo;</button>
+                    </form>
+                    <div id="fedError" class="alert alert-danger" role="alert" style="display: none;">
+                        You must be a member of the <a href="http://www.erepublik.com/en/party/federalist-party-2263/1" target="_blank">Federalist Party in order to vote.
+                    </div>
+                    <div id="citError" class="alert alert-danger" role="alert" style="display: none;">
+                        The eRep ID you provided does not match an existing citizen.
+                    </div>
+                    <div id="deadError" class="alert alert-danger" role="alert" style="display: none;">
+                        The citizen associated with the provided eRep ID is either dead or banned.
+                    </div>
+                    <?php
+                    if (isset($_SESSION['error'])) {
+                        if ($_SESSION['error'] == 'fed') {
+                        ?>
+                            <script>
+                                $("#fedError").show();
+                            </script>
+                        <?php
+                        } else if ($_SESSION['error'] == 'cit') {
+                        ?>
+                            <script>
+                                $("#citError").show();
+                            </script>
+                        <?php
+                        } else {
+                        ?>
+                            <script>
+                                $("#deadError").show();
+                            </script>
+                            <?php
+                        }
+
+                        unset($_SESSION['error']);
+                    }
+                }
+                ?>
             </div>
             <div class="mastfoot">
                 <div class="inner">
-                    <p>&copy; Copyright <a href="http://www.eotir.com/" target="_blank">Era of the Imperial Republic RPG</a></p>
+                    <!--<p>&copy; Copyright <a href="http://www.eotir.com/" target="_blank">Era of the Imperial Republic RPG</a></p>-->
                 </div>
             </div>
         </div>

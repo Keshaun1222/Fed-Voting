@@ -4,6 +4,8 @@ require __DIR__ . '/vendor/autoload.php';
 use Erpk\Harvester\Client\ClientBuilder;
 use Dotenv\Dotenv;
 
+session_start();
+
 if (file_exists(__DIR__ . '/.env')) {
     $dotenv = new Dotenv(__DIR__);
     $dotenv->load();
