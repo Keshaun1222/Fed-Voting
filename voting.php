@@ -97,9 +97,11 @@ $current = (!$vote) ? 'None' : $candidates[$vote['single']]['name'];
                     </span>
                 </form>
                 <div id="error" class="alert alert-danger alert-dismissible" role="alert" style="display: none;">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     We were unable to place your vote.
                 </div>
                 <div id="success" class="alert alert-success alert-dismissible" role="alert" style="display: none;">
+                    <button type="button" class="close" data-dismiss="alert" aria-label="Close"><span aria-hidden="true">&times;</span></button>
                     Your vote has been placed!
                 </div>
                 <?php

@@ -27,7 +27,7 @@ if ($query->num_rows > 0) {
 }
 
 if (!$vote)
-    $sql = "INSERT INTO votes VALUES (NULL, {$_SESSION['citizen']}, {$_POST['vote']})";
+    $sql = "INSERT INTO votes VALUES (NULL, {$_SESSION['citizen']}, {$election['id']}, {$_POST['vote']})";
 else
     $sql = "UPDATE votes SET single = {$_POST['vote']} WHERE id = {$vote['id']}";
 
