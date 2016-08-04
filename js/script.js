@@ -1,6 +1,6 @@
 $(document).ready(function() {
     $('[data-toggle="tooltip"]').tooltip();
-    $('[disabled="disabled"]').hover(
+    $('#submitVote').hover(
         function() {
             alert('Hi');
             $(this).tooltip('show');

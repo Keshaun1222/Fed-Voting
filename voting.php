@@ -84,7 +84,7 @@ $type = ($election['type'] == 1) ? 'Country President' : 'Party President';
                         <?php
                     }
                     ?>
-                    <span <?php if ($isCandidate) echo 'data-toggle="tooltip" data-placement="bottom" title="You are not allowed to vote in an election you are running in."' ?>>
+                    <span id="submitVote" <?php if ($isCandidate) echo 'data-toggle="tooltip" data-placement="bottom" title="You are not allowed to vote in an election you are running in."' ?>>
                         <button type="submit" class="btn btn-primary" <?php if ($isCandidate) echo 'disabled="disabled"' ?>>Submit Vote</button>
                     </span>
                 </form>
