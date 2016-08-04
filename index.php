@@ -10,7 +10,7 @@ print_r($citizen);
 echo "\r\n";
 //if ($citizen['party']['id'] == $fedsID) echo 'A FED!!!!';*/
 $date = date("Y-m-d H:i:s", time() - (60 * 60 * 2));
-$query = $mysqli->query("SELECT * FROM elections WHERE startTime < CURRENT_TIMESTAMP  AND endTime > $date");
+$query = $mysqli->query("SELECT * FROM elections WHERE startTime < $date  AND endTime > $date");
 ?>
 <!DOCTYPE html>
 <html>
