@@ -124,7 +124,7 @@ $current = (!$vote) ? 'None' : (($vote['single'] == 0 || !$vote['single']) ? 'Ab
             </div>
             <div class="mastfoot">
                 <div class="inner">
-                    <!--<p>&copy; Copyright <a href="http://www.eotir.com/" target="_blank">Era of the Imperial Republic RPG</a></p>-->
+                    <p>&copy; Copyright Federalist Party 2016</p>
                 </div>
             </div>
         </div>

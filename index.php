@@ -103,7 +103,7 @@ $query = $mysqli->query("SELECT * FROM elections WHERE startTime < '$date' AND e
             </div>
             <div class="mastfoot">
                 <div class="inner">
-                    <!--<p>&copy; Copyright <a href="http://www.eotir.com/" target="_blank">Era of the Imperial Republic RPG</a></p>-->
+                    <p>&copy; Copyright Federalist Party 2016</p>
                 </div>
             </div>
         </div>
