@@ -36,7 +36,7 @@ while ($result = $query->fetch_array()) {
     $candidates[$id] = $module->getProfile($result['erep_id']);
 }
 
-$month = date("F", strtotime($election['endTime']));
+$monthYear = date("F Y", strtotime($election['endTime']));
 $type = ($election['type'] == 1) ? 'Country President' : 'Party President';
 
 $current = (!$vote) ? 'None' : (($vote['single'] == 0 || !$vote['single']) ? 'Abstain' : $candidates[$vote['single']]['name']);
@@ -64,7 +64,7 @@ $current = (!$vote) ? 'None' : (($vote['single'] == 0 || !$vote['single']) ? 'Ab
                 </div>
             </div>
             <div class="inner cover">
-                <h1 class="cover-heading"><u><b><?php echo $month . " " . $type ?> Election</b></u></h1>
+                <h1 class="cover-heading"><u><b><?php echo $monthYear . " " . $type ?> Election</b></u></h1>
                 <h3 class="cover-heading"><b>Current Vote:</b> <i><?php echo $current ?></i></h3>
                 <!--<h3 class="cover-heading">Current Results</h3>
                 --><?php
