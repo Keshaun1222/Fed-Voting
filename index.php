@@ -9,7 +9,7 @@ $citizen = $module->getProfile(5065893);
 print_r($citizen);
 echo "\r\n";
 //if ($citizen['party']['id'] == $fedsID) echo 'A FED!!!!';*/
-$query = $mysqli->query("SELECT * FROM elections WHERE start < CURRENT_TIMESTAMP  AND end > CURRENT_TIMESTAMP");
+$query = $mysqli->query("SELECT * FROM elections WHERE start < CURRENT_TIMESTAMP  AND end > DATE_SUB(CURRENT_TIMESTAMP, INTERVAL 2 HOUR)");
 ?>
 <!DOCTYPE html>
 <html>
@@ -42,6 +42,14 @@ $query = $mysqli->query("SELECT * FROM elections WHERE start < CURRENT_TIMESTAMP
                     </div>
                     <?php
                 } else {
+                    $election = $query->fetch_array();
+                    if (strtotime($election['end']) < time()) {
+                        ?>
+                        <div id="electionEnded" class="alert alert-info" role="alert">
+                            An election has recently ended. Please wait for the results to be announced.
+                        </div>
+                        <?php
+                    } else {
                     ?>
                     <!--<h1 class="cover-heading">Enter Your eRepublik ID</h1>-->
                     <form class="form-inline" action="check.php" method="post">
@@ -51,7 +59,8 @@ $query = $mysqli->query("SELECT * FROM elections WHERE start < CURRENT_TIMESTAMP
                         <button id="submit" name="submit" class="btn btn-primary" type="submit">&raquo;</button>
                     </form>
                     <div id="fedError" class="alert alert-danger" role="alert" style="display: none;">
-                        You must be a member of the <a href="http://www.erepublik.com/en/party/federalist-party-2263/1" target="_blank">Federalist Party in order to vote.
+                        You must be a member of the <a href="http://www.erepublik.com/en/party/federalist-party-2263/1"
+                                                       target="_blank">Federalist Party in order to vote.
                     </div>
                     <div id="citError" class="alert alert-danger" role="alert" style="display: none;">
                         The eRep ID you provided does not match an existing citizen.
@@ -59,30 +68,31 @@ $query = $mysqli->query("SELECT * FROM elections WHERE start < CURRENT_TIMESTAMP
                     <div id="deadError" class="alert alert-danger" role="alert" style="display: none;">
                         The citizen associated with the provided eRep ID is either dead or banned.
                     </div>
+                <?php
+                if (isset($_SESSION['error'])) {
+                if ($_SESSION['error'] == 'fed') {
+                ?>
+                    <script>
+                        $("#fedError").show();
+                    </script>
+                <?php
+                } else if ($_SESSION['error'] == 'cit') {
+                ?>
+                    <script>
+                        $("#citError").show();
+                    </script>
+                <?php
+                } else {
+                ?>
+                    <script>
+                        $("#deadError").show();
+                    </script>
                     <?php
-                    if (isset($_SESSION['error'])) {
-                        if ($_SESSION['error'] == 'fed') {
-                        ?>
-                            <script>
-                                $("#fedError").show();
-                            </script>
-                        <?php
-                        } else if ($_SESSION['error'] == 'cit') {
-                        ?>
-                            <script>
-                                $("#citError").show();
-                            </script>
-                        <?php
-                        } else {
-                        ?>
-                            <script>
-                                $("#deadError").show();
-                            </script>
-                            <?php
-                        }
+                }
 
-                        unset($_SESSION['error']);
-                    }
+                    unset($_SESSION['error']);
+                }
+                }
                 }
                 ?>
             </div>
