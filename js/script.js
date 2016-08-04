@@ -1,6 +1,6 @@
 $(document).ready(function() {
     $('[data-toggle="tooltip"]').tooltip();
-    $('#submitVote').hover(
+    /*$('#submitVote').hover(
         function() {
             //alert('Hi');
             $(this).tooltip('show');
@@ -8,5 +8,5 @@ $(document).ready(function() {
         function() {
             $(this).tooltip('hide');
         }
-    );
+    );*/
 });
