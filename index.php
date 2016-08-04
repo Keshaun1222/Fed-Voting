@@ -43,7 +43,7 @@ $query = $mysqli->query("SELECT * FROM elections WHERE startTime < CURRENT_TIMES
                     <?php
                 } else {
                     $election = $query->fetch_array();
-                    if (strtotime($election['end']) < time()) {
+                    if (strtotime($election['endTime']) < time()) {
                         ?>
                         <div id="electionEnded" class="alert alert-info" role="alert">
                             An election has recently ended. Please wait for the results to be announced.
