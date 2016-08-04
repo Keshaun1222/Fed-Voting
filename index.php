@@ -9,7 +9,8 @@ $citizen = $module->getProfile(5065893);
 print_r($citizen);
 echo "\r\n";
 //if ($citizen['party']['id'] == $fedsID) echo 'A FED!!!!';*/
-$query = $mysqli->query("SELECT * FROM elections WHERE startTime < CURRENT_TIMESTAMP  AND endTime > DATE_SUB(CURRENT_TIMESTAMP, INTERVAL 2 HOUR)");
+$date = date("Y-m-d H:i:s", time() - (60 * 60 * 2));
+$query = $mysqli->query("SELECT * FROM elections WHERE startTime < CURRENT_TIMESTAMP  AND endTime > $date");
 ?>
 <!DOCTYPE html>
 <html>
