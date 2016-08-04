@@ -39,7 +39,7 @@ while ($result = $query->fetch_array()) {
 $month = date("F", strtotime($election['endTime']));
 $type = ($election['type'] == 1) ? 'Country President' : 'Party President';
 
-$current = (!$vote) ? 'None' : (($vote['single'] == 0) ? 'Abstain' : $candidates[$vote['single']]['name']);
+$current = (!$vote) ? 'None' : (($vote['single'] == 0 || !$vote['single']) ? 'Abstain' : $candidates[$vote['single']]['name']);
 ?>
 <!DOCTYPE html>
 <html>
