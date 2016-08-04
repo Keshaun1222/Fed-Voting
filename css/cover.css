@@ -162,6 +162,6 @@ body {
     }
 }
 
-.disabled {
-    /*pointer-events: auto;*/
+#submitVote {
+    padding: 2px;
 }
