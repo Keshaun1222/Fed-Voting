@@ -11,6 +11,11 @@ $module = new CitizenModule($client);
 
 $date = date("Y-m-d H:i:s");
 $query = $mysqli->query("SELECT * FROM elections WHERE startTime < '$date' AND endTime > '$date'");
+
+if ($query->num_rows == 0) {
+    header("Location: index.php");
+}
+
 $election = $query->fetch_array();
 
 $query = $mysqli->query("SELECT * FROM votes WHERE election = {$election['id']} AND erep_id = {$_SESSION['citizen']}");
@@ -33,6 +38,8 @@ while ($result = $query->fetch_array()) {
 
 $month = date("F", strtotime($election['endTime']));
 $type = ($election['type'] == 1) ? 'Country President' : 'Party President';
+
+$current = (!$vote) ? 'None' : $candidates[$vote['single']]['name'];
 ?>
 <!DOCTYPE html>
 <html>
@@ -57,7 +64,8 @@ $type = ($election['type'] == 1) ? 'Country President' : 'Party President';
                 </div>
             </div>
             <div class="inner cover">
-                <h1 class="cover-heading"><?php echo $month . " " . $type ?> Election</h1>
+                <h1 class="cover-heading"><u><b><?php echo $month . " " . $type ?> Election</b></u></h1>
+                <h3 class="cover-heading"><b>Current Vote:</b> <i><?php echo $current ?></i></h3>
                 <!--<h3 class="cover-heading">Current Results</h3>
                 --><?php
 /*                foreach ($candidates as $i => $candidate) {
@@ -68,7 +76,7 @@ $type = ($election['type'] == 1) ? 'Country President' : 'Party President';
                 <form class="" action="vote.php" method="post">
                     <div class="radio">
                         <label>
-                            <input type="radio" name="vote" value="0" required />
+                            <input type="radio" name="vote" value="0" required <?php if ($vote && $vote['single'] == 0) echo 'checked' ?> />
                             Abstain
                         </label>
                     </div>
@@ -77,7 +85,7 @@ $type = ($election['type'] == 1) ? 'Country President' : 'Party President';
                         ?>
                         <div class="radio">
                             <label>
-                                <input type="radio" name="vote" value="<?php echo $i ?>" required />
+                                <input type="radio" name="vote" value="<?php echo $i ?>" required <?php if ($vote && $vote['single'] == $i) echo 'checked' ?> />
                                 <?php echo $candidate['name']; ?>
                             </label>
                         </div>
@@ -88,6 +96,29 @@ $type = ($election['type'] == 1) ? 'Country President' : 'Party President';
                         <button type="submit" class="btn btn-primary" <?php if ($isCandidate) echo 'disabled="disabled"' ?>>Submit Vote</button>
                     </span>
                 </form>
+                <div id="error" class="alert alert-danger alert-dismissible" role="alert" style="display: none;">
+                    We were unable to place your vote.
+                </div>
+                <div id="success" class="alert alert-success alert-dismissible" role="alert" style="display: none;">
+                    Your vote has been placed!
+                </div>
+                <?php
+                if (isset($_SESSION['success'])) {
+                    if ($_SESSION['success'] == 'no') {
+                        ?>
+                        <script>
+                            $("#error").show();
+                        </script>
+                        <?php
+                    } else {
+                        ?>
+                        <script>
+                            $("#success").show();
+                        </script>
+                        <?php
+                    } unset($_SESSION['success']);
+                }
+                ?>
             </div>
             <div class="mastfoot">
                 <div class="inner">

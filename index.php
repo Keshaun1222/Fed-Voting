@@ -1,6 +1,10 @@
 <?php
 require_once 'config.php';
 
+if (isset($_SESSION['citizen'])) {
+    header("Location: voting.php");
+}
+
 /*use Erpk\Harvester\Module\Citizen\CitizenModule;
 
 $module = new CitizenModule($client);
@@ -61,7 +65,7 @@ $query = $mysqli->query("SELECT * FROM elections WHERE startTime < '$date' AND e
                     </form>
                     <div id="fedError" class="alert alert-danger" role="alert" style="display: none;">
                         You must be a member of the <a href="http://www.erepublik.com/en/party/federalist-party-2263/1"
-                                                       target="_blank">Federalist Party in order to vote.
+                                                       target="_blank" class="alert-link">Federalist Party in order to vote.
                     </div>
                     <div id="citError" class="alert alert-danger" role="alert" style="display: none;">
                         The eRep ID you provided does not match an existing citizen.
