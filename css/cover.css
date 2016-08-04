@@ -161,3 +161,7 @@ body {
         width: 700px;
     }
 }
+
+.disabled {
+    pointer-events: auto;
+}
