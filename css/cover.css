@@ -163,5 +163,5 @@ body {
 }
 
 .disabled {
-    pointer-events: auto;
+    /*pointer-events: auto;*/
 }
