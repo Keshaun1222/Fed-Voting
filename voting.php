@@ -31,7 +31,7 @@ while ($result = $query->fetch_array()) {
     $candidates[$id] = $module->getProfile($result['erep_id']);
 }
 
-$month = date("F", $election['endTime']);
+$month = date("F", strtotime($election['endTime']));
 $type = ($election['type'] == 1) ? 'Country President' : 'Party President';
 ?>
 <!DOCTYPE html>
@@ -71,17 +71,19 @@ $type = ($election['type'] == 1) ? 'Country President' : 'Party President';
                             <input type="radio" name="vote" value="0" required />
                             Abstain
                         </label>
-                        <?php
-                        foreach ($candidates as $i => $candidate) {
-                            ?>
+                    </div>
+                    <?php
+                    foreach ($candidates as $i => $candidate) {
+                        ?>
+                        <div class="radio">
                             <label>
                                 <input type="radio" name="vote" value="<?php echo $i ?>" required />
                                 <?php echo $candidate['name']; ?>
                             </label>
-                            <?php
-                        }
-                        ?>
-                    </div>
+                        </div>
+                        <?php
+                    }
+                    ?>
                     <button type="submit" class="btn btn-primary" <?php if ($isCandidate) echo 'disabled="disabled"' ?>>Submit Vote</button>
                 </form>
             </div>
