@@ -4,8 +4,8 @@ require_once 'config.php';
 if (isset($_POST['submit'])) {
     if (md5($_POST['password']) == md5('proudhorny2016')) {
         $_SESSION['admin'] = 'true';
-        header('Location: admin.php');
     }
+    header('Location: admin.php');
 }
 ?>
 <!DOCTYPE html>
