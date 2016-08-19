@@ -1,7 +1,7 @@
 <?php
 if (isset($_POST['submit'])) {
     if (md5($_POST['password']) == md5('proudhorny2016')) {
-        $_SESSION['admin'] = true;
+        $_SESSION['admin'] = 'true';
         header('Location: admin.php');
     }
 }
