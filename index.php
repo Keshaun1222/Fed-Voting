@@ -59,8 +59,7 @@ $query = $mysqli->query("SELECT * FROM elections WHERE startTime < '$date' AND e
                     <!--<h1 class="cover-heading">Enter Your eRepublik ID</h1>-->
                     <form class="form-inline" action="check.php" method="post">
                         <label for="id" class="sr-only">eRepublik ID</label>
-                        <input type="number" id="id" name="id" class="form-control" placeholder="eRep ID" required
-                               autofocus/>
+                        <input type="number" id="id" name="id" class="form-control" placeholder="eRep ID" required autofocus/>
                         <button id="submit" name="submit" class="btn btn-primary" type="submit">&raquo;</button>
                     </form>
                     <div id="fedError" class="alert alert-danger" role="alert" style="display: none;">
