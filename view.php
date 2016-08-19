@@ -1,3 +1,5 @@
+<?php
+?>
 <!DOCTYPE html>
 <html>
 <head>
@@ -21,11 +23,7 @@
                 </div>
             </div>
             <div class="inner cover">
-                <h1 class="cover-heading"><u><b>Election Administration</b></u></h1>
-                <h3 class="cover-heading pull-left"><a href="new.php">Add a New Election</a></h3><br />
-                <h3 class="cover-heading pull-left"><a href="cancel.php">Cancel an Election</a></h3><br />
-                <h3 class="cover-heading pull-left"><a href="add.php">Add Candidates for an Election</a></h3><br />
-                <h3 class="cover-heading pull-left"><a href="view.php">View Results of an Election</a></h3>
+
             </div>
             <div class="mastfoot">
                 <div class="inner">
